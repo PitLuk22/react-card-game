@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components';
 import question from '../img/question-mark.svg';
+import { motion } from 'framer-motion';
+import { scaleAnim } from '../animations';
 
 const Cell = ({ cell, handleClick }) => {
 
@@ -8,6 +10,7 @@ const Cell = ({ cell, handleClick }) => {
 
 	return (
 		<S.Cell
+			variants={scaleAnim}
 			onClick={status === 'opened' || status === 'active' ? null : () => handleClick(cell)}
 			status={status}
 			name={name}>
@@ -24,7 +27,7 @@ const Cell = ({ cell, handleClick }) => {
 export default Cell
 
 const S = {};
-S.Cell = styled.div`
+S.Cell = styled(motion.div)`
 	position:relative;
 	perspective: 1000px;
 	cursor: pointer;

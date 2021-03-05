@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import Timer from './Timer';
 import Cell from './Cell'
 import styled from 'styled-components';
-
-const GameField = ({ attemptCounter, setAttemptCounter, cells, setCells, time, setTime, limit }) => {
+import { motion } from 'framer-motion';
+import { fadeIn } from '../animations';
+const GameField = ({ attemptCounter, setAttemptCounter, cells, setCells, time, setTime, difficulty }) => {
 
 	const [firstSelectedCell, setFirstSelectedCell] = useState([])
-
 
 	useEffect(() => {
 		let counter = setInterval(() => {
@@ -45,9 +45,9 @@ const GameField = ({ attemptCounter, setAttemptCounter, cells, setCells, time, s
 	}
 
 	return (
-		<S.Wrapper>
-			<Timer limit={limit} attemptCounter={attemptCounter}>{time}</Timer>
-			<S.Field>
+		<S.Wrapper variants={fadeIn} initial='hidden' animate='show' exit='exit'>
+			<Timer limit={difficulty.limit} attemptCounter={attemptCounter}>{time}</Timer>
+			<S.Field difficulty={difficulty}>
 				{cells.map((cell, i) => {
 					return <Cell key={i} cell={cell} handleClick={handleClick} />
 				})}
@@ -59,16 +59,16 @@ const GameField = ({ attemptCounter, setAttemptCounter, cells, setCells, time, s
 export default GameField;
 
 const S = {};
-S.Wrapper = styled.div`
+S.Wrapper = styled(motion.div)`
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
 `;
 S.Field = styled.div`
-	min-width: 400px;
+	min-width: 100px;
 	display: grid;
-	grid-template-columns: repeat(6, 150px);
-	grid-template-rows: repeat(4, 150px);
+	grid-template-columns: ${props => `repeat(${props.difficulty.columns}, minmax(30px, 150px))`};
+	grid-template-rows: ${props => `repeat(${props.difficulty.numOfCells / props.difficulty.columns}, 150px)`};
 	grid-gap: 10px;
 `;

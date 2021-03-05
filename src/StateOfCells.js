@@ -145,3 +145,24 @@ export const StateOfCells = [
 		status: 'closed'
 	},
 ];
+
+export const typesOfDifficulty = {
+	junior: {
+		name: 'junior',
+		limit: 20,
+		numOfCells: 12,
+		columns: 4
+	},
+	middle: {
+		name: 'middle',
+		limit: 35,
+		numOfCells: 16,
+		columns: 4
+	},
+	senior: {
+		name: 'senior',
+		limit: 60,
+		numOfCells: 24,
+		columns: 6
+	}
+}
