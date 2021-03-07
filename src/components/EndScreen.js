@@ -1,68 +1,79 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom'
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { menuAnim, leftToRight, rightToLeft } from '../animations';
+import Confetti from 'react-confetti';
 
-const StartScreen = ({ handleToMenu, handleReset, isVictory, attemptCounter }) => {
+const EndScreen = ({ handleReset, isVictory, attemptCounter, time }) => {
 	return (
-		<S.StartScreen variants={menuAnim} initial='hidden' animate='show' exit='exit'>
-			<div className='wrapper'>
-				<div>
-					{isVictory === 'win' && <motion.span variants={leftToRight}>You won! Congratulations 🎉</motion.span>}
-					{isVictory === 'lose' && <motion.span variants={leftToRight}>Time is up! You lose 😭 </motion.span>}
-					<br />
-					<motion.span variants={rightToLeft} className='score'>Your score: <b>{attemptCounter}</b></motion.span>
+		<>
+			{isVictory === 'win' && <Confetti />}
+			<S.EndScreen variants={menuAnim} initial='hidden' animate='show' exit='exit'>
+				<div className='flex'>
+					<div>
+						{isVictory === 'win' && <motion.h2 variants={leftToRight}>You won! Congratulations 🎉</motion.h2>}
+						{isVictory === 'lose' && <motion.h2 variants={leftToRight}>Time is up! You lose 😭 </motion.h2>}
+						<br />
+						<motion.h4 variants={rightToLeft} className='results'>Score: <b>{attemptCounter}</b></motion.h4>
+						{isVictory === 'win' && <motion.h4 variants={leftToRight} className='results'>Time: <b>{time - 1} sec</b></motion.h4>}
+					</div>
+					<S.BtnBlock>
+						<Link to='/game'>
+							<motion.button variants={leftToRight} onClick={handleReset}>Try again</motion.button>
+						</Link>
+						<Link to='/'>
+							<motion.button variants={rightToLeft} onClick={handleReset}>Back to menu</motion.button>
+						</Link>
+					</S.BtnBlock>
 				</div>
-				<S.BtnBlock>
-					<motion.button variants={leftToRight} onClick={handleReset}>Try again</motion.button>
-					<motion.button variants={rightToLeft} onClick={handleToMenu}>Back to menu</motion.button>
-				</S.BtnBlock>
-			</div>
-		</S.StartScreen>
+			</S.EndScreen>
+		</>
 	)
 }
 
-export default StartScreen;
+export default EndScreen;
 
 const S = {};
-S.StartScreen = styled(motion.div)`
-	display: flex;
-	flex-direction: column;
+S.EndScreen = styled(motion.section)`
 	width: 630px;
 	height: 470px;
 	background-color: #1A2026;
 	color: #fff;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	border-radius: 10px;
 	text-align: center;
 	box-shadow: 2px 2px 15px  rgba(0,0,0, .5);
-	.wrapper {
+	.flex {
 		width: 100%;
-		padding: 0 60px;
+		height: 100%;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		flex-direction: column;
+		padding: 40px 60px;
 		overflow: hidden;
-	}
-	.score {
-		font-weight: 500;
-		b {
-			color: #76FEC5; 	
-		}
-	}
-	span {
+		h2 {
 		display: block;
 		font-size: 35px;
 		font-weight: 500;
 		text-align: center;
+		}
+		.results {
+			font-size: 27px;
+			font-weight: 500;
+			b {
+				color: #76FEC5; 	
+			}
+		}
 	}
 `;
+
 S.BtnBlock = styled.div`
 	display: flex;
 	width: 100%;
 	justify-content: space-around;
 	align-items: center;
 	button {
-		margin-top: 70px;
 		padding: 20px 0;
 		width: 200px; 
 		font-weight: 500;

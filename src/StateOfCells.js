@@ -149,7 +149,7 @@ export const StateOfCells = [
 export const typesOfDifficulty = {
 	junior: {
 		name: 'junior',
-		limit: 20,
+		limit: 30,
 		numOfCells: 12,
 		columns: 4
 	},

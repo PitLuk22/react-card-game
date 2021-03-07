@@ -29,8 +29,8 @@ export const leftToRight = {
 	show: { x: 0 }
 }
 export const leftToRightOpacity = {
-	hidden: { opacity: 0, x: -700 },
-	show: { opacity: 1, x: 0 }
+	hidden: { opacity: 0, x: -600 },
+	show: { opacity: 1, x: 0, transition: { duration: 1 } }
 }
 export const widthLeftToRight = {
 	hidden: { width: 0 },
