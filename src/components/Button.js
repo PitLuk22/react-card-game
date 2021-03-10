@@ -12,7 +12,7 @@ export default Button
 const S = {};
 S.Btn = styled(motion.button)`
 	padding: ${props => props.size === 'small' ? '20px 0' : '20px 80px'};
-	width: ${props => props.width === 'small' ? '200px' : 'auto'}; 
+	width: ${props => props.size === 'small' ? '200px' : 'auto'}; 
 	font-weight: 500;
 	background-color: #00FF94;
 	border-radius: 10px;

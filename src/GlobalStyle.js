@@ -17,8 +17,7 @@ const GlobalStyle = createGlobalStyle`
 		height: 100vh;
 		display: flex;
 		justify-content: center;
-		align-items: flex-start;
-		padding-top: 100px;
+		align-items: center;
 		background-color: #2F3640;
 	}
 `;
