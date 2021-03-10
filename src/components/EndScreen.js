@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { menuAnim, leftToRight, rightToLeft } from '../animations';
 import Confetti from 'react-confetti';
+import Button from './Button';
 
 const EndScreen = ({ handleReset, isVictory, attemptCounter, time }) => {
 	return (
@@ -19,11 +20,11 @@ const EndScreen = ({ handleReset, isVictory, attemptCounter, time }) => {
 						{isVictory === 'win' && <motion.h4 variants={leftToRight} className='results'>Time: <b>{time - 1} sec</b></motion.h4>}
 					</div>
 					<S.BtnBlock>
-						<Link to='/game'>
-							<motion.button variants={leftToRight} onClick={handleReset}>Try again</motion.button>
+						<Link to='/game' onClick={handleReset}>
+							<Button animVariant={leftToRight} size={'small'}>Try again</Button>
 						</Link>
-						<Link to='/'>
-							<motion.button variants={rightToLeft} onClick={handleReset}>Back to menu</motion.button>
+						<Link to='/' onClick={handleReset}>
+							<Button animVariant={rightToLeft} size={'small'}>Back to menu</Button>
 						</Link>
 					</S.BtnBlock>
 				</div>
@@ -36,7 +37,7 @@ export default EndScreen;
 
 const S = {};
 S.EndScreen = styled(motion.section)`
-	width: 630px;
+	width: min(90%, 630px);
 	height: 470px;
 	background-color: #1A2026;
 	color: #fff;
@@ -55,7 +56,7 @@ S.EndScreen = styled(motion.section)`
 		h2 {
 		display: block;
 		font-size: 35px;
-		font-weight: 500;
+		font-weight: 600;
 		text-align: center;
 		}
 		.results {
@@ -66,6 +67,18 @@ S.EndScreen = styled(motion.section)`
 			}
 		}
 	}
+	@media(max-width: 576px ) {
+		.flex {
+			padding: 20px 40px;
+			h2 {
+				font-size: 25px;
+			}
+			.results {
+				font-size: 25px;
+				font-weight: 400;
+			}
+		}
+	}
 `;
 
 S.BtnBlock = styled.div`
@@ -73,20 +86,14 @@ S.BtnBlock = styled.div`
 	width: 100%;
 	justify-content: space-around;
 	align-items: center;
-	button {
-		padding: 20px 0;
-		width: 200px; 
-		font-weight: 500;
-		background-color: #00FF94;
-		border-radius: 10px;
-		box-shadow: 0 5px 10px 5px rgba(0,0,0, .3);
-		border: none;
-		font-size: 25px;
-		color: #000;
-		cursor: pointer;
-		&:hover {
-			transition: all .5s ease;
-			background-color: #00cb76;
+
+	@media(max-width: 576px) {
+		flex-direction: column;
+		a {
+			width: 100%;
+			&:first-child {
+				margin-bottom: 20px;
+			}
 		}
 	}
 `;

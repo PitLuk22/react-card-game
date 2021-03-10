@@ -64,11 +64,15 @@ S.Wrapper = styled(motion.div)`
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	margin: 0 20px;
 `;
 S.Field = styled.div`
 	min-width: 100px;
 	display: grid;
 	grid-template-columns: ${props => `repeat(${props.difficulty.columns}, minmax(30px, 150px))`};
-	grid-template-rows: ${props => `repeat(${props.difficulty.numOfCells / props.difficulty.columns}, 150px)`};
+	grid-template-rows: ${props => `repeat(${props.difficulty.numOfCells / props.difficulty.columns}, min(20vw, 150px))`};
 	grid-gap: 10px;
+	@media(max-width: 576px) {
+		grid-gap: 5px;
+	}
 `;

@@ -46,7 +46,7 @@ S.Cell = styled(motion.div)`
 		box-shadow: 0 0 10px 5px rgba(0,0,0, .2);
 		img {
 			width: 100%;
-			height: 100px; 
+			height: min(100px, 70%); 
 			color: #1A2026;
 		}
 	}
@@ -62,7 +62,7 @@ S.Cell = styled(motion.div)`
 		transform: ${props => props.status === 'opened' || props.status === 'active' ? 'rotateY(360deg)' : 'rotateY(180deg)'};
 		border: 2px solid  ${props => props.status === 'opened' ? '#B5FBDD' : 'transparent'};
 		img {
-			transform: rotateY(360deg);
+			-moz-transform: rotateY(360deg);
 		}
-	}	
+	}	  
 `;

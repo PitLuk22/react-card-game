@@ -6,6 +6,7 @@ const GlobalStyle = createGlobalStyle`
 		padding: 0;
 		box-sizing: border-box;
 	}
+	
 	body {
 		font-family: 'Poppins', sans-serif;
 		-webkit-font-smoothing: antialiased;
@@ -16,7 +17,8 @@ const GlobalStyle = createGlobalStyle`
 		height: 100vh;
 		display: flex;
 		justify-content: center;
-		align-items: center;
+		align-items: flex-start;
+		padding-top: 100px;
 		background-color: #2F3640;
 	}
 `;

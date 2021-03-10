@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom'
+import Button from './Button';
 
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
@@ -42,9 +43,7 @@ const StartScreen = ({ handleStart, difficulty, handleDiffeculty }) => {
 					<S.Divider variants={widthRightToLeft} />
 				</S.Diffeculty>
 				<Link to='/game' onClick={handleStart}>
-					<motion.button variants={bottomToTop}>
-						Let's start
-					</motion.button>
+					<Button animVariant={bottomToTop} size={'big'}>Let's start</Button>
 				</Link>
 			</div>
 		</S.StartScreen>
@@ -55,7 +54,7 @@ export default StartScreen;
 
 const S = {};
 S.StartScreen = styled(motion.section)`
-	width: 630px;
+	width: min(90%, 630px);
 	height: 470px;
 	background-color: #1A2026;
 	color: #fff;
@@ -78,19 +77,16 @@ S.StartScreen = styled(motion.section)`
 		font-weight: 700;
 		text-align: center;
 	}
-	button {
-		padding: 20px 80px;
-		font-weight: 500;
-		background-color: #00FF94;
-		border-radius: 10px;
-		box-shadow: 0 5px 10px 5px rgba(0,0,0, .3);
-		border: none;
-		font-size: 25px;
-		color: #000;
-		cursor: pointer;
-		&:hover {
-			transition: all .5s ease;
-			background-color: #00cb76;
+	a {
+		width: 100%;
+	}
+	
+	@media(max-width: 576px ) {
+		h1 {
+			font-size: 25px;
+		}
+		.flex {
+			padding: 40px;
 		}
 	}
 `;
@@ -103,6 +99,12 @@ S.Divider = styled(motion.div)`
 	&:last-child {
 		margin-left: auto;
 		margin-top: 30px;
+	}
+	@media(max-width: 576px ) {
+		margin-bottom: 35px;
+		&:last-child {
+			margin-top: 45px;
+		}
 	}
 `;
 
@@ -125,15 +127,29 @@ S.Diffeculty = styled.div`
 			transition: all .5s ease;
 		}
 	}
+	@media(max-width: 576px ) {
+		.settings {
+			font-size: 16px;
+			margin-top: 30px;
+			.item {
+				padding: 0 15px;
+			}
+		}
+		h3 {
+			font-size: 14px;
+		}
+	}
 `;
 S.Marker = styled(motion.div)`
 	position: absolute;
 	top: 0;
 	left: 0;
 	height: 30px;
-	width: 100px;
 	background-color: ${props => props.difficulty.name === 'junior' ? '#00FF94' : props.difficulty.name === 'middle' ? '#FF7A2F' : '#EE3D48'};
 	border-radius: 10px;
 	transition: all 0.3s ease-in-out;
 	z-index: 1;
+	@media(max-width: 576px ) {
+		height: 25px;
+	}
 `;
